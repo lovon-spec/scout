@@ -7,10 +7,10 @@ export interface TosSection {
   content: ContentBlock[]
 }
 
-export const tosTitle = 'Kleros Scout \u2014 Terms of Service'
+export const tosTitle = 'Community Scout \u2014 Terms of Service'
 
 export const tosIntro = [
-  'These Terms of Service ("Terms") govern your access to and use of the Kleros Scout website (https://klerosscout.eth.limo/) and Dapp (https://app.klerosscout.eth.limo/), both referred as "Site" operated by Coop\u00e9rative Kleros, SCIC ("Kleros", "we", or "us").',
+  'These Terms of Service ("Terms") govern your access to and use of Community Scout (the "Site"), an independently operated community fork of Kleros Scout. The Site is not operated, endorsed or maintained by Coop\u00e9rative Kleros, SCIC ("Kleros"). "We" and "us" refer to the people who run the Site.',
   'By accessing or using the Site, you agree to these Terms. If you do not agree, please refrain from using the Site.',
 ]
 
@@ -20,7 +20,7 @@ export const tosSections: TosSection[] = [
     content: [
       {
         type: 'paragraph',
-        text: 'Kleros Scout is a front-end interface that allows users to explore and interact with decentralized, community-curated registries. These registries contain information about tokens, and other blockchain addresses. Users may also submit entries to these registries or challenge existing ones, all governed by decentralized dispute resolution mechanisms.',
+        text: 'Community Scout is a front-end interface that allows users to explore and interact with decentralized, community-curated registries. These registries contain information about tokens, and other blockchain addresses. Users may also submit entries to these registries or challenge existing ones, all governed by decentralized dispute resolution mechanisms.',
       },
       {
         type: 'paragraph',
@@ -28,7 +28,7 @@ export const tosSections: TosSection[] = [
       },
       {
         type: 'paragraph',
-        text: 'Kleros does not control or validate registry content and provides the Site solely as an access point to decentralized systems governed by community curation. The verification process is carried out through a fully decentralized procedure, in which third-party actors, not affiliated with Kleros, verify and validate the data.',
+        text: 'We do not control or validate registry content and provide the Site solely as an access point to decentralized systems governed by community curation. The verification process is carried out through a fully decentralized procedure, in which third-party actors, not affiliated with us or with Kleros, verify and validate the data.',
       },
     ],
   },
@@ -52,7 +52,7 @@ export const tosSections: TosSection[] = [
       },
       {
         type: 'paragraph',
-        text: "Kleros is not liable for any loss or dispute outcome. All submissions and challenges are resolved by independent jurors through Kleros' decentralized dispute resolution system.",
+        text: "We are not liable for any loss or dispute outcome. All submissions and challenges are resolved by independent jurors through Kleros' decentralized dispute resolution system.",
       },
     ],
   },
@@ -61,7 +61,7 @@ export const tosSections: TosSection[] = [
     content: [
       {
         type: 'paragraph',
-        text: 'The information accessible via the Site is community-curated. Inclusion of an address, token, or tag in a registry does not imply endorsement, verification, or validation by Kleros or its contributors.',
+        text: 'The information accessible via the Site is community-curated. Inclusion of an address, token, or tag in a registry does not imply endorsement, verification, or validation by us, by Kleros, or by their contributors.',
       },
       {
         type: 'paragraph',
@@ -74,7 +74,7 @@ export const tosSections: TosSection[] = [
     content: [
       {
         type: 'paragraph',
-        text: 'To the maximum extent permitted by law, Kleros disclaims all liability for:',
+        text: 'To the maximum extent permitted by law, we disclaim all liability for:',
       },
       {
         type: 'list',
@@ -95,7 +95,7 @@ export const tosSections: TosSection[] = [
     content: [
       {
         type: 'paragraph',
-        text: 'Nothing on the Site constitutes legal, financial, or investment advice. You should consult independent professionals before making decisions based on any information available through Kleros Scout.',
+        text: 'Nothing on the Site constitutes legal, financial, or investment advice. You should consult independent professionals before making decisions based on any information available through the Site.',
       },
     ],
   },
@@ -104,16 +104,7 @@ export const tosSections: TosSection[] = [
     content: [
       {
         type: 'paragraph',
-        text: 'Kleros may update or discontinue the Site or its features at any time, without notice or liability. These Terms may also be updated from time to time. Continued use of the Site after changes constitutes acceptance of the revised Terms.',
-      },
-    ],
-  },
-  {
-    title: '7. Governing Law',
-    content: [
-      {
-        type: 'paragraph',
-        text: 'These Terms are governed by the laws of France, without regard to conflict of law principles. Any disputes shall be subject to the exclusive jurisdiction of the courts located in Paris, France.',
+        text: 'We may update or discontinue the Site or its features at any time, without notice or liability. These Terms may also be updated from time to time. Continued use of the Site after changes constitutes acceptance of the revised Terms.',
       },
     ],
   },

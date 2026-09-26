@@ -1,4 +1,4 @@
-/* Kleros Scout notifications: shows push messages and opens the item on click. */
+/* Community Scout notifications: shows push messages and opens the item on click. */
 
 self.addEventListener('install', () => self.skipWaiting())
 self.addEventListener('activate', (event) =>
@@ -13,7 +13,7 @@ self.addEventListener('push', (event) => {
     data = { body: event.data ? event.data.text() : '' }
   }
   event.waitUntil(
-    self.registration.showNotification(data.title || 'Kleros Scout', {
+    self.registration.showNotification(data.title || 'Community Scout', {
       body: data.body || '',
       tag: data.tag,
       data: { url: data.url || '/' },

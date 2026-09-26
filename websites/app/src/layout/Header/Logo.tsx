@@ -5,7 +5,6 @@ import { hoverShortTransitionTiming } from "styles/commonStyles";
 
 import { Link } from "react-router-dom";
 
-import KlerosScoutLogo from "svgs/header/kleros-scout.svg";
 
 const Container = styled.div`
   display: flex;
@@ -14,24 +13,31 @@ const Container = styled.div`
   gap: 16px;
 `;
 
-const StyledKlerosScoutLogo = styled(KlerosScoutLogo)`
+// Community Scout: its own wordmark, not Kleros's logo.
+const Wordmark = styled.span`
   ${hoverShortTransitionTiming}
-  max-height: 40px;
-  width: auto;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: ${({ theme }) => theme.white};
 
   &:hover {
-    path {
-      fill: ${({ theme }) => theme.white}BF;
-    }
+    color: ${({ theme }) => theme.white}BF;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const Logo: React.FC = () => (
   <Container>
     {" "}
-    <Link to={"/"}>
-      <StyledKlerosScoutLogo />
-    </Link>
+    <StyledLink to={"/"} aria-label="Community Scout home">
+      <Wordmark>Community Scout</Wordmark>
+    </StyledLink>
   </Container>
 );
 

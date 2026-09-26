@@ -6,11 +6,6 @@ import { landscapeStyle, MAX_WIDTH_LANDSCAPE } from "styles/landscapeStyle";
 import { responsiveSize } from "styles/responsiveSize";
 import { hoverShortTransitionTiming } from "styles/commonStyles";
 
-import SecuredByKlerosLogo from "svgs/footer/secured-by-kleros.svg";
-
-import { socialmedia } from "consts/socialmedia";
-
-import LightButton from "components/LightButton";
 import { ExternalLink } from "components/ExternalLink";
 
 const Container = styled.div`
@@ -43,42 +38,24 @@ const Inner = styled.div`
   )}
 `;
 
-const StyledSecuredByKlerosLogo = styled(SecuredByKlerosLogo)`
-  ${hoverShortTransitionTiming}
-  min-height: 24px;
+// Community Scout: says whose fork this is, in place of Kleros's branding.
+const Attribution = styled.p`
+  margin: 0;
+  color: ${({ theme }) => theme.white}BF;
+  font-size: 14px;
+  font-family: "Manrope", sans-serif;
+  text-align: center;
 
-  path {
-    fill: ${({ theme }) => theme.white}BF;
+  a {
+    ${hoverShortTransitionTiming}
+    color: ${({ theme }) => theme.white}BF;
+    text-decoration: underline;
   }
 
-  :hover path {
-    fill: ${({ theme }) => theme.white};
-  }
-`;
-
-const StyledSocialMedia = styled.div`
-  display: flex;
-
-  .button-svg {
-    margin-right: 0;
+  a:hover {
+    color: ${({ theme }) => theme.white};
   }
 `;
-
-const SecuredByKleros: React.FC = () => (
-  <ExternalLink to="https://kleros.io" target="_blank" rel="noreferrer">
-    <StyledSecuredByKlerosLogo />
-  </ExternalLink>
-);
-
-const SocialMedia = () => (
-  <StyledSocialMedia>
-    {Object.values(socialmedia).map((site, i) => (
-      <ExternalLink key={site.url} to={site.url} target="_blank" rel="noreferrer">
-        <LightButton Icon={site.icon} text="" />
-      </ExternalLink>
-    ))}
-  </StyledSocialMedia>
-);
 
 const StyledToSLink = styled(Link)`
   ${hoverShortTransitionTiming}
@@ -117,7 +94,13 @@ const StyledAgentLink = styled.a`
 const Footer: React.FC = () => (
   <Container>
     <Inner>
-      <SecuredByKleros />
+      <Attribution>
+        An independently operated community fork of{" "}
+        <ExternalLink to="https://scout.kleros.io" target="_blank" rel="noreferrer">
+          Kleros Scout
+        </ExternalLink>
+        .
+      </Attribution>
       <FooterLinks>
         <StyledToSLink to="/terms-of-service">
           Terms of Service
@@ -130,7 +113,6 @@ const Footer: React.FC = () => (
           For agents
         </StyledAgentLink>
       </FooterLinks>
-      <SocialMedia />
     </Inner>
   </Container>
 );

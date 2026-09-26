@@ -437,7 +437,7 @@ ${
           )
         } else {
           await reply(
-            `This bot sends Kleros Scout notifications. Connect it from Scout → Settings → Notifications: ${escapeHtml(settingsUrl(env.siteUrl))}`,
+            `This bot sends Community Scout notifications. Connect it from Scout → Settings → Notifications: ${escapeHtml(settingsUrl(env.siteUrl))}`,
           )
         }
         return json({ ok: true })

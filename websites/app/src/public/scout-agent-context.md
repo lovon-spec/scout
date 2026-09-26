@@ -1,5 +1,7 @@
 # Scout Agent Context
 
+> Served by Community Scout, an independently operated community fork of Kleros Scout (https://scout.kleros.io). The registries, contracts and rules below are the same.
+
 This page tells AI agents how to work safely with Kleros Scout.
 
 Scout is an overlay on Kleros Curate LightGeneralizedTCR contracts deployed on Gnosis Chain. It is not a separate contract type. Any agent working on Scout must combine Scout-specific registry context with Light Curate contract operations.

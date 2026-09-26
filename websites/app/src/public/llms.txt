@@ -1,5 +1,7 @@
 # Kleros Scout llms.txt
 
+> Served by Community Scout, an independently operated community fork of Kleros Scout (https://scout.kleros.io). The registries, contracts and rules below are the same.
+
 Summary: Kleros Scout is a UI for four fixed Gnosis Chain Kleros Curate LightGeneralizedTCR registries. Agents must read Scout-specific registry context before acting on submissions, challenges, removals, evidence, appeals, registry data, token lists, address tags, or CDN mappings.
 
 Start here:

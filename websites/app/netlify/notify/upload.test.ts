@@ -112,7 +112,7 @@ const upload = async (
 
 const PNG = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 1])
 const png = (bytes: Uint8Array = PNG) =>
-  new File([bytes], 'logo.png', { type: 'image/png' })
+  new File([bytes as BlobPart], 'logo.png', { type: 'image/png' })
 
 // Pinata's upload endpoint, answering with a CID.
 const mockPinata = (status = 200) => {

@@ -193,7 +193,7 @@ export const useNotifyProfile = () => {
 }
 
 const SIGN_IN_STATEMENT =
-  'Sign in to manage your Kleros Scout notifications. This is free: it sends no transaction and grants no permissions.'
+  'Sign in to Community Scout to upload files and manage notifications. This is free: it sends no transaction and grants no permissions.'
 
 export const useNotifySignIn = () => {
   const queryClient = useQueryClient()

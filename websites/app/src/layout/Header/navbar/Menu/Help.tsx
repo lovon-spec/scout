@@ -5,11 +5,8 @@ import { landscapeStyle } from "styles/landscapeStyle";
 import { useClickAway } from "react-use";
 
 import Guide from "svgs/icons/book.svg";
-import Bug from "svgs/icons/bug.svg";
-import Chat from "svgs/icons/chat.svg"
 import ETH from "svgs/icons/eth.svg";
 import Faq from "svgs/menu-icons/help.svg";
-import Telegram from "svgs/socialmedia/telegram.svg";
 
 import { IHelp } from "../index";
 
@@ -78,24 +75,11 @@ const Icon = styled.svg`
   fill: ${({ theme }) => theme.secondaryText};
 `;
 
+// Community Scout: Kleros's support channels are for Kleros Scout, so only
+// the guides remain.
 const ITEMS = [
   {
-    text: "Get Help",
-    Icon: Telegram,
-    url: "https://t.me/KlerosCurate",
-  },
-  {
-    text: "Report a Bug",
-    Icon: Bug,
-    url: "https://github.com/kleros/scout/issues",
-  },
-  {
-    text: "Give Feedback",
-    Icon: Chat,
-    url: "https://forms.gle/Qnr9QwqRjaYMyB3t6",
-  },
-  {
-    text: "App Guide",
+    text: "Scout Guide (Kleros docs)",
     Icon: Guide,
     url: "https://docs.kleros.io/products/scout",
   },
@@ -105,7 +89,7 @@ const ITEMS = [
     url: "https://ethereum.org/en/wallets/",
   },
   {
-    text: "FAQ",
+    text: "Scout FAQ (Kleros docs)",
     Icon: Faq,
     url: "https://docs.kleros.io/products/scout-faq",
   },
