@@ -1,5 +1,7 @@
 # Kleros Scout llms.txt
 
+> Served by Community Scout, an independently operated community fork of Kleros Scout (https://scout.kleros.io). The registries, contracts and rules below are the same.
+
 This well-known mirror exists for agent discovery.
 
 Canonical instructions:

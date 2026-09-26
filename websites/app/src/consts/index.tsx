@@ -4,11 +4,9 @@ export const TELEGRAM_REGEX = /^@\w{5,32}$/
 export const ETH_ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/
 export const ETH_SIGNATURE_REGEX = /^0x[a-fA-F0-9]{130}$/
 
-const dapplookerApiKey = import.meta.env.REACT_APP_DAPPLOOKER_API_KEY
-if (!dapplookerApiKey) {
-  throw new Error('REACT_APP_DAPPLOOKER_API_KEY environment variable is not set.')
-}
-export const DAPPLOOKER_API_KEY = dapplookerApiKey
+// Community Scout: optional; without it the statistics are hidden.
+export const DAPPLOOKER_API_KEY: string | undefined =
+  import.meta.env.REACT_APP_DAPPLOOKER_API_KEY || undefined
 
 const subgraphGnosisEndpoint = import.meta.env.REACT_APP_SUBGRAPH_GNOSIS_ENDPOINT
 if (!subgraphGnosisEndpoint) {

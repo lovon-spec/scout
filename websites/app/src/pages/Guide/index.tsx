@@ -12,8 +12,8 @@ import WarningOutlineIcon from "svgs/icons/warning-outline.svg";
 import { hoverShortTransitionTiming } from "styles/commonStyles";
 import ScrollTop from "components/ScrollTop";
 
-const SCOUT_AGENT_ENTRY_URL = "https://scout-app.kleros.io/llms-full.txt";
-const SCOUT_AGENT_PROMPT = `Read ${SCOUT_AGENT_ENTRY_URL} and follow it before interacting with Kleros Scout.`;
+const SCOUT_AGENT_ENTRY_URL = `${window.location.origin}/llms-full.txt`;
+const SCOUT_AGENT_PROMPT = `Read ${SCOUT_AGENT_ENTRY_URL} and follow it before interacting with Community Scout.`;
 
 const Container = styled.div`
   color: ${({ theme }) => theme.primaryText};
@@ -378,7 +378,7 @@ const SubmittingItem = () => (
   <SectionContainer>
     <SectionHeader>Submitting an Item</SectionHeader>
     <SectionSteps>
-      <StepItem>1. Go to Kleros Scout.</StepItem>
+      <StepItem>1. Go to Community Scout.</StepItem>
       <StepItem>2. Connect your crypto wallet.</StepItem>
       <StepItem>
         3. Click the dropdown menu “Lists” and select the correct registry (e.g.,
@@ -406,7 +406,7 @@ const ChallengingSubmission = () => (
   <SectionContainer>
     <SectionHeader>Challenging a Suspicious Submission</SectionHeader>
     <SectionSteps>
-      <StepItem>1. Go to Kleros Scout.</StepItem>
+      <StepItem>1. Go to Community Scout.</StepItem>
       <StepItem>2. Connect your crypto wallet.</StepItem>
       <StepItem>3. Find a submission that looks inconsistent.</StepItem>
       <StepItem>4. Click "Details," then "Challenge Item."</StepItem>
@@ -494,7 +494,7 @@ const QuickGuidePage: React.FC = () => {
         <div>
           <Title>Guide & Skills</Title>
           <Subtitle>
-            Keep the community safe, earn bounties, and have fun in Kleros Scout!
+            Keep the community safe, earn bounties, and have fun in Community Scout!
           </Subtitle>
         </div>
       </Header>
