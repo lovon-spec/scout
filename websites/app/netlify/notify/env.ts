@@ -19,6 +19,8 @@ export interface NotifyEnv {
   email?: { resendApiKey: string; from: string }
   telegram?: { botToken: string; botUsername: string; webhookSecret: string }
   push?: { publicKey: string; privateKey: string; subject: string }
+  /** Community Scout: pins uploads with Pinata instead of Kleros's Atlas. */
+  ipfs?: { pinataJwt: string }
 }
 
 const list = (value: string | undefined, fallback: string[]) =>
@@ -82,6 +84,7 @@ export const readEnv = (
       webhookSecret: env.TELEGRAM_WEBHOOK_SECRET,
     }
   }
+  if (env.PINATA_JWT) config.ipfs = { pinataJwt: env.PINATA_JWT }
   if (env.VAPID_PUBLIC_KEY && env.VAPID_PRIVATE_KEY && env.VAPID_SUBJECT) {
     config.push = {
       publicKey: env.VAPID_PUBLIC_KEY,

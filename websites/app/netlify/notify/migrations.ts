@@ -132,6 +132,18 @@ export const MIGRATIONS: { version: string; sql: string }[] = [
       );
     `,
   },
+  {
+    // Community Scout only: uploads counted against each user's limits.
+    version: 'fork_001_uploads',
+    sql: `
+      create table uploads (
+        user_id bigint not null references users(id) on delete cascade,
+        bytes bigint not null,
+        created_at timestamptz not null default now()
+      );
+      create index uploads_user_time on uploads(user_id, created_at);
+    `,
+  },
 ]
 
 let ensured: Promise<void> | undefined

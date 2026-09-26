@@ -63,6 +63,7 @@ import {
   MAX_WATCHED_ADDRESSES,
 } from './store'
 import { randomToken, sha256Hex, verifyToken } from './tokens'
+import { uploadRoutes } from './upload'
 import {
   ITEM_ID,
   READS_PER_REQUEST,
@@ -166,6 +167,7 @@ export const createApi = (service: Service) => {
   }
 
   const router = createRouter([
+    ...uploadRoutes({ db, env, currentUser }),
     [
       'GET',
       '/api/notify/config',

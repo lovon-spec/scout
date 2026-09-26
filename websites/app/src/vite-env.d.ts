@@ -5,6 +5,7 @@ interface ImportMetaEnv {
   readonly REACT_APP_SUBGRAPH_GNOSIS_ENDPOINT: string;
   readonly REACT_APP_SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT: string;
   readonly REACT_APP_ATLAS_URI: string;
+  readonly REACT_APP_IPFS_CHECK_GATEWAY?: string;
 }
 
 interface ImportMeta {

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@kleros/kleros-app": ["./src/fork/atlas.tsx"],
       "~*": ["./*"],
       "src*": ["./src*"],
       "utils*": ["./src/utils*"],
