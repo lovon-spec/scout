@@ -105,6 +105,17 @@
     "overrides": [
       {
         "files": [
+          "src/public/notify-sw.js"
+        ],
+        "env": {
+          "serviceworker": true
+        },
+        "rules": {
+          "no-restricted-globals": "off"
+        }
+      },
+      {
+        "files": [
           "netlify/**/*.mts"
         ],
         "parser": "@typescript-eslint/parser",
