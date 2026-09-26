@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 import svgr from "vite-plugin-svgr";
@@ -8,6 +9,12 @@ export default defineConfig({
   envDir: "..",
   define: {
     global: 'globalThis',
+  },
+  resolve: {
+    alias: {
+      // Community Scout: its own sign-in and uploads instead of Kleros's Atlas.
+      "@kleros/kleros-app": fileURLToPath(new URL("./src/fork/atlas.tsx", import.meta.url)),
+    },
   },
   server: {
     proxy: {

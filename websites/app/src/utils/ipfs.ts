@@ -17,7 +17,9 @@ export const verifyIpfsFileAvailable = async (
   ipfsPath: string,
   attempts = 3,
 ): Promise<boolean> => {
-  const url = `${KLEROS_CDN_BASE}${normalizeIpfsPath(ipfsPath)}`
+  // Community Scout: a gateway that has its uploads at once, if set.
+  const gateway = import.meta.env.REACT_APP_IPFS_CHECK_GATEWAY || KLEROS_CDN_BASE
+  const url = `${gateway.replace(/\/$/, '')}${normalizeIpfsPath(ipfsPath)}`
   for (let attempt = 0; attempt < attempts; attempt++) {
     if (attempt > 0)
       await new Promise((resolve) => setTimeout(resolve, 2_000 * attempt))
