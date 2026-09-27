@@ -22,4 +22,6 @@ const notifyDeliver = async () => {
 
 export default notifyDeliver
 
-export const config: Config = { schedule: '* * * * *' }
+// Community Scout: a minute after each watcher run (see notify-watcher.mts),
+// so new alerts go out while the database is still awake.
+export const config: Config = { schedule: '1,16,31,46 * * * *' }

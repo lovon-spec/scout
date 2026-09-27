@@ -11,6 +11,7 @@ An independently operated community fork of [Kleros Scout](https://scout.kleros.
   - Each user may upload at most 30 files an hour and 50 MB a day.
 - **Help:** Kleros's support channels (Telegram, bug tracker, feedback form) are for Kleros Scout, so the Help menu keeps only the guides.
 - **Statistics:** the DappLooker key is optional; without it, the statistics are hidden.
+- **Notification timing:** the watcher runs every 15 minutes instead of every minute, and delivery a minute after it, so the database sleeps in between and free Neon and Netlify plans suffice. Alerts arrive up to about 16 minutes after the activity.
 
 ## Branches
 
@@ -48,7 +49,7 @@ Repository settings, under Secrets and variables → Actions:
 | `REACT_APP_SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT`                   | Optional. The Kleros Display subgraph on The Graph's network, with an API key of your own: `https://gateway.thegraph.com/api/<key>/subgraphs/id/FxhLntVBELrZ4t1c2HNNvLWEYfBjpB8iKZiEymuFSPSr`. Without it, the latest disputes and the solved-disputes figure are left out, and court periods are read on-chain. |
 | `REACT_APP_IPFS_CHECK_GATEWAY`                                        | Optional. Before sending a transaction, the app checks that an upload can be fetched. It uses `https://cdn.kleros.link` by default; a dedicated Pinata gateway serves new uploads at once.                                                                                                                       |
 
-The Netlify site doesn't build anything itself; turn its builds off. Its environment holds the functions' secrets: the variables in `netlify/notify/README.md`, a Postgres database (Netlify DB, or your own as `NOTIFY_DATABASE_URL`), and:
+The Netlify site doesn't build anything itself; turn its builds off. Its environment holds the functions' secrets: the variables in `netlify/notify/README.md`, a Postgres database as `NOTIFY_DATABASE_URL` (Community Scout uses a free Neon project's pooled connection string, with compute fixed at 0.25 CU so it stays inside the free hours), and:
 
 | Variable     |                                                                           |
 | ------------ | ------------------------------------------------------------------------- |
