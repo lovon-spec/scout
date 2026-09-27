@@ -25,15 +25,16 @@ Changes go into the lowest upstream branch they belong to. The branches above ar
 
 ## Deploying
 
-Deploys run in public, from `.github/workflows/community-scout.yml` in lovon-spec/scout, on every push to `fork`:
+Deploys run in public, from `.github/workflows/community-scout.yml` in lovon-spec/scout, on every push to `fork` that changes more than this file:
 
 1. Install, test and build on Node 20.18.3.
 2. Record signed build provenance for every file in `dist` (GitHub artifact attestations).
 3. Deploy exactly those files, and the functions, to Netlify with the Netlify CLI.
+4. Tag the deployed commit `deployed/<run id>`, so its source stays in the repository when `fork` is rebased onto newer upstream changes.
 
 The footer links to the build a page came from.
 
-**Checking a deployment:** download any file the site serves, such as its main script, and run `gh attestation verify <file> --repo lovon-spec/scout`. It succeeds only for files this workflow built from a commit in that repository.
+**Checking a deployment:** download a file the site serves, such as its main script (`/assets/index-….js`, named in the page source), and run `gh attestation verify <file> --repo lovon-spec/scout`. It succeeds only for files this workflow built from a commit in that repository. Netlify's free plan edits HTML pages as it serves them, adding a comment and its "Powered by Netlify" badge script, so `index.html` itself won't match; the scripts and styles it loads are served unchanged.
 
 Repository settings, under Secrets and variables → Actions:
 
