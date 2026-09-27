@@ -38,6 +38,18 @@ const Inner = styled.div`
   )}
 `;
 
+// Community Scout: the public build this site came from, whose files anyone
+// can check against their recorded provenance.
+const COMMIT_SHA = import.meta.env.REACT_APP_COMMIT_SHA;
+const SOURCE_REPO = import.meta.env.REACT_APP_SOURCE_REPO;
+const BUILD_RUN_ID = import.meta.env.REACT_APP_BUILD_RUN_ID;
+const BUILD_URL =
+  COMMIT_SHA && SOURCE_REPO
+    ? BUILD_RUN_ID
+      ? `https://github.com/${SOURCE_REPO}/actions/runs/${BUILD_RUN_ID}`
+      : `https://github.com/${SOURCE_REPO}/commit/${COMMIT_SHA}`
+    : undefined;
+
 // Community Scout: says whose fork this is, in place of Kleros's branding.
 const Attribution = styled.p`
   margin: 0;
@@ -112,6 +124,16 @@ const Footer: React.FC = () => (
         >
           For agents
         </StyledAgentLink>
+        {BUILD_URL && COMMIT_SHA ? (
+          <StyledAgentLink
+            href={BUILD_URL}
+            target="_blank"
+            rel="noreferrer"
+            title="The public build these files came from"
+          >
+            Build {COMMIT_SHA.slice(0, 7)}
+          </StyledAgentLink>
+        ) : null}
       </FooterLinks>
     </Inner>
   </Container>
