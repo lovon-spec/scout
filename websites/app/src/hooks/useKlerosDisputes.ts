@@ -46,6 +46,7 @@ const fetchCourtDisputes = async (
   court: string,
   first: number,
 ): Promise<KlerosDispute[]> => {
+  if (!SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT) return [];
   const response = await fetch(SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT, {
     method: 'POST',
     headers: {

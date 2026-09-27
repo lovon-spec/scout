@@ -304,7 +304,7 @@ export const HomeCarousel: React.FC<HomeCarouselProps> = ({ stats, isLoading, ch
               <StatCard
                 icon={<DisputesIcon />}
                 title="Total Solved Disputes"
-                mainValue={isLoading ? <Skeleton width={60} height={32} /> : (stats?.totalSolvedDisputes || 0)}
+                mainValue={isLoading ? <Skeleton width={60} height={32} /> : (stats?.totalSolvedDisputes ?? '—')}
               />
             </Position1Left>
 

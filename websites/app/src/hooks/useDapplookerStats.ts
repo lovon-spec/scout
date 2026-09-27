@@ -52,7 +52,7 @@ interface DapplookerStatsData {
   totalAssetsVerified: number
   totalSubmissions: number
   totalCurators: number
-  totalSolvedDisputes: number
+  totalSolvedDisputes: number | null
   tokens: {
     assetsVerified: number
     assetsVerifiedChange: number
@@ -209,7 +209,9 @@ const fetchTotalSubmissions = async (): Promise<number | null> => {
 }
 
 // Fetch total solved disputes from Kleros Display subgraph (xDAI Curation Court)
-const fetchTotalSolvedDisputes = async (): Promise<number> => {
+const fetchTotalSolvedDisputes = async (): Promise<number | null> => {
+  // Community Scout: unknown without the Kleros Display subgraph.
+  if (!SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT) return null
   try {
     let total = 0
     let skip = 0

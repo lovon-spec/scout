@@ -14,11 +14,10 @@ if (!subgraphGnosisEndpoint) {
 }
 export const SUBGRAPH_GNOSIS_ENDPOINT = subgraphGnosisEndpoint
 
-const subgraphKlerosDisplayGnosisEndpoint = import.meta.env.REACT_APP_SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT
-if (!subgraphKlerosDisplayGnosisEndpoint) {
-  throw new Error('REACT_APP_SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT environment variable is not set.')
-}
-export const SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT = subgraphKlerosDisplayGnosisEndpoint
+// Community Scout: optional. Without it, court periods are read on-chain, and
+// the latest disputes and the solved-disputes figure are left out.
+export const SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT: string | undefined =
+  import.meta.env.REACT_APP_SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT || undefined
 
 export const KLEROS_CDN_BASE = 'https://cdn.kleros.link'
 

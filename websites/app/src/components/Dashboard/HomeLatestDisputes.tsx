@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { pulse } from 'styles/commonStyles';
 import { useKlerosDisputes, getDisputePeriodName, formatDisputeDeadline } from 'hooks/useKlerosDisputes';
+import { SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT } from 'consts';
 import LawBalanceIcon from 'assets/svgs/icons/law-balance.svg';
 import HourglassIcon from 'assets/svgs/icons/hourglass.svg';
 
@@ -135,6 +136,9 @@ interface KlerosDispute {
 
 export const HomeLatestDisputes: React.FC = () => {
   const { data: disputes = [], isLoading, error } = useKlerosDisputes(9);
+
+  // Community Scout: needs the Kleros Display subgraph, which is optional.
+  if (!SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT) return null;
 
   if (isLoading) {
     return (
