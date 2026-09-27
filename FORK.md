@@ -22,22 +22,33 @@ An independently operated community fork of [Kleros Scout](https://scout.kleros.
 
 Changes go into the lowest upstream branch they belong to. The branches above are then rebased onto it: `git rebase --update-refs --onto <new> <old> lab`.
 
-## Deploying on Netlify
+## Deploying
 
-Base directory `websites/app`. `netlify.toml` sets the build, Node 20.18.3 and the functions.
+Deploys run in public, from `.github/workflows/community-scout.yml` in lovon-spec/scout, on every push to `fork`:
 
-The app's build needs:
+1. Install, test and build on Node 20.18.3.
+2. Record signed build provenance for every file in `dist` (GitHub artifact attestations).
+3. Deploy exactly those files, and the functions, to Netlify with the Netlify CLI.
 
-| Variable                                            |                                                                                                                                                                                            |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `REACT_APP_SUBGRAPH_GNOSIS_ENDPOINT`                | Scout's Envio indexer. The public endpoint is Kleros's; tell them, or run your own.                                                                                                        |
-| `REACT_APP_SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT` | The Kleros Display subgraph on The Graph's network, with an API key of your own: `https://gateway.thegraph.com/api/<key>/subgraphs/id/FxhLntVBELrZ4t1c2HNNvLWEYfBjpB8iKZiEymuFSPSr`        |
-| `WALLETCONNECT_PROJECT_ID`                          | Your own Reown project, with your domain allowed.                                                                                                                                          |
-| `ALCHEMY_API_KEY`                                   | Optional. Your own key.                                                                                                                                                                    |
-| `REACT_APP_DAPPLOOKER_API_KEY`                      | Optional. Leave it out to hide the statistics.                                                                                                                                             |
-| `REACT_APP_IPFS_CHECK_GATEWAY`                      | Optional. Before sending a transaction, the app checks that an upload can be fetched. It uses `https://cdn.kleros.link` by default; a dedicated Pinata gateway serves new uploads at once. |
+The footer links to the build a page came from.
 
-The functions (notifications and uploads) need the variables in `netlify/notify/README.md`, plus:
+**Checking a deployment:** download any file the site serves, such as its main script, and run `gh attestation verify <file> --repo lovon-spec/scout`. It succeeds only for files this workflow built from a commit in that repository.
+
+Repository settings, under Secrets and variables → Actions:
+
+| Secret               |                                                           |
+| -------------------- | --------------------------------------------------------- |
+| `NETLIFY_AUTH_TOKEN` | A Netlify personal access token that can deploy the site. |
+| `NETLIFY_SITE_ID`    | The Netlify site's ID.                                    |
+
+| Variable (these end up in the site's code, so they are public anyway) |                                                                                                                                                                                                                                                                                                                  |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `REACT_APP_SUBGRAPH_GNOSIS_ENDPOINT`                                  | Scout's Envio indexer. The public endpoint is Kleros's; tell them, or run your own.                                                                                                                                                                                                                              |
+| `WALLETCONNECT_PROJECT_ID`                                            | Your own Reown project, with your domain allowed.                                                                                                                                                                                                                                                                |
+| `REACT_APP_SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT`                   | Optional. The Kleros Display subgraph on The Graph's network, with an API key of your own: `https://gateway.thegraph.com/api/<key>/subgraphs/id/FxhLntVBELrZ4t1c2HNNvLWEYfBjpB8iKZiEymuFSPSr`. Without it, the latest disputes and the solved-disputes figure are left out, and court periods are read on-chain. |
+| `REACT_APP_IPFS_CHECK_GATEWAY`                                        | Optional. Before sending a transaction, the app checks that an upload can be fetched. It uses `https://cdn.kleros.link` by default; a dedicated Pinata gateway serves new uploads at once.                                                                                                                       |
+
+The Netlify site doesn't build anything itself; turn its builds off. Its environment holds the functions' secrets: the variables in `netlify/notify/README.md`, a Postgres database (Netlify DB, or your own as `NOTIFY_DATABASE_URL`), and:
 
 | Variable     |                                                                           |
 | ------------ | ------------------------------------------------------------------------- |
