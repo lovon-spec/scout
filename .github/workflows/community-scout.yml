@@ -7,6 +7,8 @@ name: Community Scout
 on:
   push:
     branches: [fork]
+    # Each production deploy costs Netlify credits; notes alone don't need one.
+    paths-ignore: [FORK.md]
   workflow_dispatch:
 
 permissions:
@@ -73,3 +75,20 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+  keep-source:
+    # `fork` is rebased when the upstream branches change, which would leave
+    # deployed commits unreachable; a tag per deploy keeps each one.
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Tag the deployed commit
+        run: |
+          tag="deployed/$GITHUB_RUN_ID"
+          gh api "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/tags/$tag" -f sha="$GITHUB_SHA" > /dev/null ||
+            # A re-run of the same run finds its tag already there.
+            [ "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" --jq .object.sha)" = "$GITHUB_SHA" ]
+        env:
+          GH_TOKEN: ${{ github.token }}
