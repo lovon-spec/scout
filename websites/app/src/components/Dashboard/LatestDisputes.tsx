@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { landscapeStyle } from 'styles/landscapeStyle';
 import { pulse } from 'styles/commonStyles';
 import { useKlerosDisputes, getDisputePeriodName, formatDisputeDeadline } from 'hooks/useKlerosDisputes';
+import { SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT } from 'consts';
 
 import DisputeResolverIcon from 'assets/svgs/icons/dispute-resolver.svg';
 import HourglassIcon from 'assets/svgs/icons/hourglass.svg';
@@ -259,6 +260,9 @@ export const LatestDisputes: React.FC = () => {
     setCurrentGroup(index);
     startCarousel(); // Reset timer when user manually changes group
   }, [startCarousel]);
+
+  // Community Scout: needs the Kleros Display subgraph, which is optional.
+  if (!SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT) return null;
 
   if (isLoading) {
     return (

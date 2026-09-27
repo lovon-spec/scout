@@ -105,8 +105,27 @@ interface CourtSubgraphResponse {
 }
 
 const fetchCourtData = async (
-  subcourtID: number
+  subcourtID: number,
+  arbitrator: string,
+  provider: JsonRpcProvider
 ): Promise<{ courtName: string; timesPerPeriod: number[] }> => {
+  // Community Scout: without the Kleros Display subgraph, read the periods on-chain.
+  if (!SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT) {
+    try {
+      const court = new Contract(
+        arbitrator,
+        ['function getSubcourt(uint96) view returns (uint256[] children, uint256[4] timesPerPeriod)'],
+        provider
+      )
+      const { timesPerPeriod } = await court.getSubcourt(subcourtID)
+      return {
+        courtName: `Court #${subcourtID}`,
+        timesPerPeriod: [...timesPerPeriod].map((t: bigint) => Number(t)),
+      }
+    } catch {
+      return { courtName: `Court #${subcourtID}`, timesPerPeriod: [0, 0, 0, 0] }
+    }
+  }
   try {
     const response = await fetch(SUBGRAPH_KLEROS_DISPLAY_GNOSIS_ENDPOINT, {
       method: 'POST',
@@ -158,7 +177,11 @@ export const fetchRegistryDeposits = async (
     }
 
     // Fetch court name and timesPerPeriod from Kleros Display subgraph
-    const { courtName, timesPerPeriod } = await fetchCourtData(subcourtID)
+    const { courtName, timesPerPeriod } = await fetchCourtData(
+      subcourtID,
+      viewInfo.arbitrator,
+      provider
+    )
 
     const depositParams: DepositParams = {
       submissionBaseDeposit: viewInfo.submissionBaseDeposit,
