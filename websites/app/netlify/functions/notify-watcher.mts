@@ -24,4 +24,7 @@ const notifyWatcher = async () => {
 
 export default notifyWatcher
 
-export const config: Config = { schedule: '* * * * *' }
+// Community Scout: every 15 minutes instead of every minute, so the database
+// sleeps in between and free Neon and Netlify plans suffice. Keep minute 0:
+// the watcher prunes old notifications on the hour.
+export const config: Config = { schedule: '*/15 * * * *' }
