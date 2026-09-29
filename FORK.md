@@ -56,6 +56,18 @@ The Netlify site doesn't build anything itself; turn its builds off. Its environ
 | ------------ | ------------------------------------------------------------------------- |
 | `PINATA_JWT` | A Pinata API key allowed to upload files. Without it, uploads answer 503. |
 
+**On Supabase:** create the project in the region of the Netlify functions (us-east-2 by default) and use its transaction pooler string with `?sslmode=require`. Supabase publishes the `public` schema through its Data API, which the service doesn't use. Once the service has created its tables (its first request does), close them to the API's roles; the service's own role owns the tables and is unaffected:
+
+```sql
+alter default privileges for role postgres in schema public revoke all on tables from anon, authenticated, service_role;
+alter default privileges for role postgres in schema public revoke all on sequences from anon, authenticated, service_role;
+alter default privileges for role postgres in schema public revoke all on functions from anon, authenticated, service_role;
+revoke all on all tables in schema public from anon, authenticated, service_role;
+revoke all on all sequences in schema public from anon, authenticated, service_role;
+revoke all on all functions in schema public from anon, authenticated, service_role;
+do $$ declare t record; begin for t in select tablename from pg_tables where schemaname = 'public' loop execute format('alter table public.%I enable row level security', t.tablename); end loop; end $$;
+```
+
 Kleros-hosted read services remain in use: the Envio indexer endpoint above, `cdn.kleros.link` for reading IPFS content, and `rewards.kleros.io`.
 
 ## Licence
